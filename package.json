@@ -1,28 +1,55 @@
 {
-  "name": "os",
+  "name": "svelte-tailwind-storybook-template",
+  "description": "os reborn",
   "version": "0.0.1",
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:obonyojimmy/svelte-tailwind-storybook-template.git"
   },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "postcss-import": "^14.0.0",
-    "postcss-load-config": "^3.0.1",
-    "rollup": "^2.3.4",
-    "rollup-plugin-css-only": "^3.1.0",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^7.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0",
-    "svelte-preprocess": "^4.6.6"
+  "scripts": {
+    "dev": "run-p watch:*",
+    "watch:css": "postcss src/assets/global.pcss -o static/global.css -w",
+    "watch:dev": "sapper dev",
+    "build": "run-s build:css build:sapper",
+    "build:css": "NODE_ENV=production postcss src/assets/global.pcss -o static/global.css",
+    "build:sapper": "sapper build --legacy",
+    "build:export": "sapper export --legacy",
+    "export": "run-s build:css build:export",
+    "start": "node __sapper__/build"
   },
   "dependencies": {
+    "@inspired-devs/ui-base": "file:../Packages/ui-base",
     "autoprefixer": "^10.2.4",
+    "compression": "^1.7.1",
+    "polka": "next",
     "postcss": "^8.2.5",
-    "sirv-cli": "^1.0.0",
+    "sirv": "^1.0.0",
     "tailwindcss": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "@rollup/plugin-babel": "^5.0.0",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-replace": "^2.2.0",
+    "@rollup/plugin-url": "^5.0.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-svelte3": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^8.3.1",
+    "postcss-load-config": "^3.0.1",
+    "prettier": "^2.2.1",
+    "prettier-plugin-svelte": "^2.1.3",
+    "rollup": "^2.3.4",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "sapper": "^0.28.0",
+    "svelte": "^3.17.3",
+    "svelte-preprocess": "^4.6.6"
   }
 }

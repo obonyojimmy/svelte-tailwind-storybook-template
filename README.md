@@ -1,2 +1,3 @@
 # svelte-tailwind-storybook-template
-Svelte + Tailwind + Storybook + Testing template
+
+Sapper + Tailwind + Storybook + Testing template
